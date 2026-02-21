@@ -12,6 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<!-- Umami Analytics — replace data-website-id after Vercel setup -->
+<script defer src="https://your-umami-instance.vercel.app/script.js" data-website-id="YOUR_WEBSITE_ID"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -562,7 +564,7 @@
 </section>
 
 <!-- ═══════ WHO IS THIS FOR ═══════ -->
-<section class="for-section">
+<section class="for-section" id="who-this-is-for">
   <div class="section-label">Who This Is For</div>
   <h2 class="section-title">Built for people who don't write code</h2>
   <p class="section-desc">If you've ever thought "I wish I could just build this myself," this guide is for you.</p>
@@ -687,7 +689,7 @@
 </section>
 
 <!-- ═══════ PLAYBOOKS ═══════ -->
-<section class="playbooks">
+<section class="playbooks" id="playbooks">
   <div class="playbooks-inner">
     <div class="section-label">Included</div>
     <h2 class="section-title">10 copy-paste project playbooks</h2>
@@ -824,7 +826,7 @@
 </section>
 
 <!-- ═══════ AUTHOR ═══════ -->
-<section class="author-section">
+<section class="author-section" id="author">
   <div class="author-inner">
     <div class="author-avatar"><img src="./ofir-headshot.png?v=2" alt="Ofir Bloch"></div>
     <div>
@@ -850,7 +852,7 @@
 </section>
 
 <!-- ═══════ CTA BOTTOM ═══════ -->
-<section class="cta-bottom">
+<section class="cta-bottom" id="cta-bottom">
   <div class="cta-inner">
     <h2>Your team doesn't need to wait for engineering.</h2>
     <p>This guide shows you how to start building today &mdash; dashboards, websites, automations &mdash; with Claude Code. No coding. No permission needed. Just start.</p>
@@ -876,6 +878,7 @@
 </div>
 
 <script>
+/* ── Existing interactions ── */
 function activatePanel(el) {
   document.querySelectorAll('.chapter-panel').forEach(function(p) { p.classList.remove('active'); });
   el.classList.add('active');
@@ -890,6 +893,8 @@ function toggleAllPlaybooks() {
   var anyOpen = Array.from(items).some(function(i) { return i.getAttribute('aria-expanded') === 'true'; });
   items.forEach(function(i) { i.setAttribute('aria-expanded', !anyOpen); });
   updateToggleAllLabel();
+  // Track expand all click
+  track('click_expand_all', { state: anyOpen ? 'collapsed' : 'expanded' });
 }
 function updateToggleAllLabel() {
   var items = document.querySelectorAll('#playbookList .playbook-item');
@@ -897,13 +902,76 @@ function updateToggleAllLabel() {
   var btn = document.getElementById('toggleAll');
   btn.querySelector('span').textContent = anyOpen ? 'Collapse All' : 'Expand All';
 }
-// Keyboard support: Enter/Space to toggle
 document.addEventListener('keydown', function(e) {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('playbook-item')) {
     e.preventDefault();
     togglePlaybook(e.target);
   }
 });
+
+/* ── Analytics helper ── */
+function track(name, data) {
+  if (typeof umami !== 'undefined') {
+    umami.track(name, data);
+  }
+}
+
+/* ── Download tracking ── */
+document.querySelectorAll('a[download]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var label = btn.closest('.hero') ? 'hero' :
+                btn.closest('.mid-cta') ? 'mid_cta' :
+                btn.closest('.author-section') ? 'author' :
+                btn.closest('.cta-bottom') ? 'bottom_cta' :
+                btn.closest('.sticky-cta') ? 'sticky_mobile' : 'unknown';
+    track('download_manual', { location: label });
+  });
+});
+
+/* ── Scroll depth tracking ── */
+(function() {
+  var depths = [25, 50, 75, 100];
+  var fired = {};
+  window.addEventListener('scroll', function() {
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) return;
+    var pct = Math.round((scrollTop / docHeight) * 100);
+    depths.forEach(function(d) {
+      if (pct >= d && !fired[d]) {
+        fired[d] = true;
+        track('scroll_depth', { depth: d + '%' });
+      }
+    });
+  }, { passive: true });
+})();
+
+/* ── Section visibility tracking ── */
+(function() {
+  var sections = [
+    { id: 'who-this-is-for', name: 'who_this_is_for' },
+    { id: 'whats-inside', name: 'whats_inside' },
+    { id: 'playbooks', name: 'playbooks' },
+    { id: 'author', name: 'author' },
+    { id: 'cta-bottom', name: 'bottom_cta' }
+  ];
+  if (!('IntersectionObserver' in window)) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var sec = sections.find(function(s) { return s.id === entry.target.id; });
+        if (sec) {
+          track('section_view', { section: sec.name });
+          observer.unobserve(entry.target);
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(function(s) {
+    var el = document.getElementById(s.id);
+    if (el) observer.observe(el);
+  });
+})();
 </script>
 </body>
 </html>
