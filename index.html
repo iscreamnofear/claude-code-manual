@@ -260,15 +260,19 @@
   .playbook-item[aria-expanded="true"] .playbook-detail {
     max-height: 300px; padding: 16px 24px 8px 60px; opacity: 1;
   }
-  .playbook-meta {
-    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4px 16px;
-    font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5;
+  .playbook-hook {
+    font-family: 'Lora', serif; font-size: 15px; font-style: italic;
+    color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 12px;
   }
-  .playbook-meta strong { color: rgba(255,255,255,0.7); font-weight: 600; display: block; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 2px; }
-  .playbook-desc {
-    margin-top: 12px; font-family: 'Lora', serif; font-size: 14px;
-    color: rgba(255,255,255,0.45); line-height: 1.7; font-style: italic;
+  .playbook-outcome {
+    font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; margin-bottom: 10px;
   }
+  .playbook-outcome span { color: var(--brass); font-weight: 600; }
+  .playbook-confidence {
+    font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.5;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .playbook-confidence .dot-sep { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0; }
 
   /* ── AUTHOR ── */
   .author-section { padding: 80px 24px; border-top: 1px solid var(--rule); }
@@ -359,8 +363,8 @@
     .section-title { font-size: 26px; }
     .section-desc { font-size: 15px; }
     .playbooks { padding: 56px 20px; }
-    .playbook-meta { grid-template-columns: 1fr 1fr; }
     .playbook-item[aria-expanded="true"] .playbook-detail { padding-left: 20px; padding-right: 12px; }
+    .playbook-confidence { flex-wrap: wrap; }
     .chapters-grid { grid-template-columns: 1fr; }
     .for-grid { grid-template-columns: 1fr; }
     .cta-bottom { padding: 56px 20px 100px; }
@@ -539,13 +543,9 @@
           <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
-          <div class="playbook-meta">
-            <div><strong>Who:</strong> Marketing ops, sales ops, CS leads</div>
-            <div><strong>Time:</strong> 30&ndash;60 minutes</div>
-            <div><strong>You get:</strong> Live dashboard with charts &amp; filters</div>
-            <div><strong>Tool:</strong> Claude Code Desktop</div>
-          </div>
-          <div class="playbook-desc">Your boss wants a dashboard. You have the data in Excel. Skip the six-week dev request.</div>
+          <div class="playbook-hook">Your boss wants a dashboard. You have the data in Excel. Skip the six-week dev request.</div>
+          <div class="playbook-outcome"><span>&rarr; You'll build:</span> a live dashboard with charts and filters your team can bookmark and check anytime.</div>
+          <div class="playbook-confidence">30&ndash;60 minutes <span class="dot-sep"></span> Marketing ops, sales ops, CS leads <span class="dot-sep"></span> Beginner-friendly</div>
         </div>
       </div>
       <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
@@ -555,13 +555,9 @@
           <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
-          <div class="playbook-meta">
-            <div><strong>Who:</strong> Marketing managers, founders</div>
-            <div><strong>Time:</strong> 1&ndash;2 hours</div>
-            <div><strong>You get:</strong> Multi-page site (home, about, contact)</div>
-            <div><strong>Tool:</strong> Claude Code Desktop</div>
-          </div>
-          <div class="playbook-desc">A professional site you control, without waiting for the web team.</div>
+          <div class="playbook-hook">A professional site you control, without waiting for the web team.</div>
+          <div class="playbook-outcome"><span>&rarr; You'll build:</span> a multi-page website (home, about, contact) you can deploy and share a real URL for.</div>
+          <div class="playbook-confidence">1&ndash;2 hours <span class="dot-sep"></span> Marketing managers, founders <span class="dot-sep"></span> Intermediate</div>
         </div>
       </div>
       <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
@@ -571,13 +567,9 @@
           <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
-          <div class="playbook-meta">
-            <div><strong>Who:</strong> Anyone reporting weekly metrics</div>
-            <div><strong>Time:</strong> 15 min first run, 2 min after</div>
-            <div><strong>You get:</strong> Formatted executive summary</div>
-            <div><strong>Tool:</strong> Cowork</div>
-          </div>
-          <div class="playbook-desc">The report your boss reads every Monday, built automatically from your data. Saves 30&ndash;45 min/week.</div>
+          <div class="playbook-hook">The report your boss reads every Monday, built automatically from your data. Saves 30&ndash;45 min/week.</div>
+          <div class="playbook-outcome"><span>&rarr; You'll build:</span> a formatted executive summary that updates in minutes, not hours.</div>
+          <div class="playbook-confidence">15 min first run, 2 min after <span class="dot-sep"></span> Anyone reporting metrics <span class="dot-sep"></span> Easiest project</div>
         </div>
       </div>
       <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
@@ -587,13 +579,9 @@
           <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
-          <div class="playbook-meta">
-            <div><strong>Who:</strong> Product marketing, strategy, sales</div>
-            <div><strong>Time:</strong> 45 min setup, 15 min monthly</div>
-            <div><strong>You get:</strong> Organized competitive tracker</div>
-            <div><strong>Tool:</strong> Cowork</div>
-          </div>
-          <div class="playbook-desc">Know what your competitors are doing. Organized, searchable, shareable.</div>
+          <div class="playbook-hook">Know what your competitors are doing. Organized, searchable, shareable.</div>
+          <div class="playbook-outcome"><span>&rarr; You'll build:</span> a competitive intelligence spreadsheet you update monthly by just dropping in new materials.</div>
+          <div class="playbook-confidence">45 min setup, 15 min monthly <span class="dot-sep"></span> Product marketing, strategy <span class="dot-sep"></span> Beginner-friendly</div>
         </div>
       </div>
       <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
@@ -603,13 +591,9 @@
           <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
-          <div class="playbook-meta">
-            <div><strong>Who:</strong> Customer success, support, product</div>
-            <div><strong>Time:</strong> 3&ndash;5 hours</div>
-            <div><strong>You get:</strong> Chat widget trained on your docs</div>
-            <div><strong>Tool:</strong> Claude Code Desktop</div>
-          </div>
-          <div class="playbook-desc">A chatbot that answers customer questions using your actual documentation, not made-up answers. Most complex project &mdash; most valuable.</div>
+          <div class="playbook-hook">A chatbot that answers customer questions using your actual documentation, not made-up answers.</div>
+          <div class="playbook-outcome"><span>&rarr; You'll build:</span> a chat widget that searches your docs, cites sources, and says "I don't know" when it should.</div>
+          <div class="playbook-confidence">3&ndash;5 hours <span class="dot-sep"></span> Customer success, support teams <span class="dot-sep"></span> Most complex &mdash; most valuable</div>
         </div>
       </div>
       <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
@@ -619,13 +603,9 @@
           <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
-          <div class="playbook-meta">
-            <div><strong>Who:</strong> Event marketers, demand gen</div>
-            <div><strong>Time:</strong> 1&ndash;2 hours</div>
-            <div><strong>You get:</strong> Landing page with registration form</div>
-            <div><strong>Tool:</strong> Claude Code Desktop</div>
-          </div>
-          <div class="playbook-desc">A page for your next webinar, conference, or product launch. Live in an afternoon.</div>
+          <div class="playbook-hook">A page for your next webinar, conference, or product launch. Live in an afternoon.</div>
+          <div class="playbook-outcome"><span>&rarr; You'll build:</span> a landing page with countdown timer, speaker bios, and a working registration form.</div>
+          <div class="playbook-confidence">1&ndash;2 hours <span class="dot-sep"></span> Event marketers, demand gen <span class="dot-sep"></span> Intermediate</div>
         </div>
       </div>
       <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
@@ -635,13 +615,9 @@
           <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
-          <div class="playbook-meta">
-            <div><strong>Who:</strong> Team leads, ops managers</div>
-            <div><strong>Time:</strong> 2&ndash;3 hours</div>
-            <div><strong>You get:</strong> Internal wiki with search &amp; categories</div>
-            <div><strong>Tool:</strong> Claude Code Desktop</div>
-          </div>
-          <div class="playbook-desc">Stop answering the same question in Slack for the fifteenth time.</div>
+          <div class="playbook-hook">Stop answering the same question in Slack for the fifteenth time.</div>
+          <div class="playbook-outcome"><span>&rarr; You'll build:</span> an internal wiki with search, categories, and a simple way to add new articles.</div>
+          <div class="playbook-confidence">2&ndash;3 hours <span class="dot-sep"></span> Team leads, ops managers <span class="dot-sep"></span> Intermediate</div>
         </div>
       </div>
       <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
@@ -651,13 +627,9 @@
           <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
-          <div class="playbook-meta">
-            <div><strong>Who:</strong> Sales ops, revenue ops, marketing ops</div>
-            <div><strong>Time:</strong> 1&ndash;2 hours</div>
-            <div><strong>You get:</strong> Scored &amp; ranked lead list from CSV</div>
-            <div><strong>Tool:</strong> Claude Code Desktop</div>
-          </div>
-          <div class="playbook-desc">Score your leads based on your own criteria. No expensive tool required.</div>
+          <div class="playbook-hook">Score your leads based on your own criteria. No expensive tool required.</div>
+          <div class="playbook-outcome"><span>&rarr; You'll build:</span> a scoring engine that reads your CSV, applies your rules, and outputs a ranked lead list.</div>
+          <div class="playbook-confidence">1&ndash;2 hours <span class="dot-sep"></span> Sales ops, revenue ops <span class="dot-sep"></span> Intermediate</div>
         </div>
       </div>
       <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
@@ -667,13 +639,9 @@
           <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
-          <div class="playbook-meta">
-            <div><strong>Who:</strong> Anyone tracking spending</div>
-            <div><strong>Time:</strong> 1&ndash;2 hours</div>
-            <div><strong>You get:</strong> Budget tracker with charts &amp; categories</div>
-            <div><strong>Tool:</strong> Claude Code Desktop</div>
-          </div>
-          <div class="playbook-desc">Track your spending without giving your bank login to another app. Runs entirely on your computer.</div>
+          <div class="playbook-hook">Track your spending without giving your bank login to another app. Everything stays on your computer.</div>
+          <div class="playbook-outcome"><span>&rarr; You'll build:</span> a personal budget tracker with auto-categorization, charts, and actual-vs-target comparisons.</div>
+          <div class="playbook-confidence">1&ndash;2 hours <span class="dot-sep"></span> Anyone tracking spending <span class="dot-sep"></span> Intermediate</div>
         </div>
       </div>
       <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
@@ -683,13 +651,9 @@
           <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
-          <div class="playbook-meta">
-            <div><strong>Who:</strong> Email marketers, demand gen, lifecycle</div>
-            <div><strong>Time:</strong> 20&ndash;30 minutes</div>
-            <div><strong>You get:</strong> Complete 5-email nurture sequence</div>
-            <div><strong>Tool:</strong> Cowork</div>
-          </div>
-          <div class="playbook-desc">Plan and draft an entire email sequence with your brand voice.</div>
+          <div class="playbook-hook">Plan and draft an entire email sequence with your brand voice. Subject lines, body copy, and CTAs &mdash; all five emails.</div>
+          <div class="playbook-outcome"><span>&rarr; You'll build:</span> a complete 5-email nurture sequence ready to paste into your email platform.</div>
+          <div class="playbook-confidence">20&ndash;30 minutes <span class="dot-sep"></span> Email marketers, demand gen <span class="dot-sep"></span> Easiest project</div>
         </div>
       </div>
     </div>
