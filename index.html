@@ -215,27 +215,45 @@
   }
   .playbook-pip.filled { background: var(--teal); }
 
-  /* Accordion expand */
+  /* Accordion expand/collapse */
+  .playbook-controls {
+    display: flex; justify-content: flex-end; margin-bottom: 16px;
+  }
+  .toggle-all {
+    background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5);
+    font: 500 12px/1 'Inter', sans-serif; letter-spacing: 0.5px;
+    padding: 8px 16px; border-radius: 6px; cursor: pointer;
+    transition: all 0.2s ease; display: flex; align-items: center; gap: 6px;
+  }
+  .toggle-all:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+  .toggle-all svg { width: 14px; height: 14px; }
   .playbook-item { cursor: pointer; position: relative; flex-wrap: wrap; transition: all 0.25s ease; }
   .playbook-item:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
+  .playbook-item[aria-expanded="true"] { background: rgba(255,255,255,0.05); border-color: rgba(9,135,160,0.3); }
   .playbook-header { display: flex; align-items: center; gap: 16px; width: 100%; pointer-events: none; }
   .playbook-toggle {
-    margin-left: auto; width: 24px; height: 24px; flex-shrink: 0;
+    margin-left: auto; width: 28px; height: 28px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    pointer-events: none;
+    pointer-events: none; border-radius: 50%;
+    background: rgba(255,255,255,0.06); transition: all 0.25s ease;
   }
-  .playbook-toggle svg {
-    width: 16px; height: 16px; stroke: rgba(255,255,255,0.3);
-    transition: transform 0.25s ease;
+  .playbook-item[aria-expanded="true"] .playbook-toggle { background: rgba(9,135,160,0.2); }
+  .playbook-toggle::before, .playbook-toggle::after {
+    content: ''; position: absolute;
+    background: rgba(255,255,255,0.4); border-radius: 1px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
   }
-  .playbook-item.open .playbook-toggle svg { transform: rotate(180deg); }
+  .playbook-toggle::before { width: 12px; height: 2px; }
+  .playbook-toggle::after { width: 2px; height: 12px; }
+  .playbook-item[aria-expanded="true"] .playbook-toggle::after { transform: rotate(90deg); opacity: 0; }
+  .playbook-item[aria-expanded="true"] .playbook-toggle::before { background: var(--teal); }
   .playbook-detail {
-    width: 100%; overflow: hidden; max-height: 0;
-    transition: max-height 0.35s ease, padding 0.35s ease;
+    width: 100%; overflow: hidden; max-height: 0; opacity: 0;
+    transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.25s ease;
     padding: 0 0 0 48px;
   }
-  .playbook-item.open .playbook-detail {
-    max-height: 300px; padding: 14px 0 4px 48px;
+  .playbook-item[aria-expanded="true"] .playbook-detail {
+    max-height: 300px; padding: 16px 0 6px 48px; opacity: 1;
   }
   .playbook-meta {
     display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
@@ -338,7 +356,7 @@
     .playbooks { padding: 56px 20px; }
     .playbook-list { grid-template-columns: 1fr; }
     .playbook-meta { grid-template-columns: 1fr; }
-    .playbook-item.open .playbook-detail { padding-left: 48px; }
+    .playbook-item[aria-expanded="true"] .playbook-detail { padding-left: 48px; }
     .chapters-grid { grid-template-columns: 1fr; }
     .for-grid { grid-template-columns: 1fr; }
     .cta-bottom { padding: 56px 20px 100px; }
@@ -503,12 +521,18 @@
     <div class="section-label">Included</div>
     <h2 class="section-title">10 copy-paste project playbooks</h2>
     <p class="section-desc">Real projects. Exact prompts. Each playbook tells you who it's for, what you'll build, and how long it takes.</p>
-    <div class="playbook-list">
-      <div class="playbook-item" onclick="this.classList.toggle('open')">
+    <div class="playbook-controls">
+      <button class="toggle-all" id="toggleAll" onclick="toggleAllPlaybooks()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/><polyline points="6 15 12 21 18 15"/></svg>
+        <span>Expand All</span>
+      </button>
+    </div>
+    <div class="playbook-list" id="playbookList">
+      <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
         <div class="playbook-header">
           <div class="playbook-number">01</div>
           <div><div class="playbook-name">Spreadsheet to Dashboard</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
-          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
           <div class="playbook-meta">
@@ -520,11 +544,11 @@
           <div class="playbook-desc">Your boss wants a dashboard. You have the data in Excel. Skip the six-week dev request.</div>
         </div>
       </div>
-      <div class="playbook-item" onclick="this.classList.toggle('open')">
+      <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
         <div class="playbook-header">
           <div class="playbook-number">02</div>
           <div><div class="playbook-name">Marketing Website</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
-          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
           <div class="playbook-meta">
@@ -536,11 +560,11 @@
           <div class="playbook-desc">A professional site you control, without waiting for the web team.</div>
         </div>
       </div>
-      <div class="playbook-item" onclick="this.classList.toggle('open')">
+      <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
         <div class="playbook-header">
           <div class="playbook-number">03</div>
           <div><div class="playbook-name">Monday Morning Report</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip"></span><span class="playbook-pip"></span></div></div>
-          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
           <div class="playbook-meta">
@@ -552,11 +576,11 @@
           <div class="playbook-desc">The report your boss reads every Monday, built automatically from your data. Saves 30&ndash;45 min/week.</div>
         </div>
       </div>
-      <div class="playbook-item" onclick="this.classList.toggle('open')">
+      <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
         <div class="playbook-header">
           <div class="playbook-number">04</div>
           <div><div class="playbook-name">Competitive Intel Tracker</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip"></span><span class="playbook-pip"></span></div></div>
-          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
           <div class="playbook-meta">
@@ -568,11 +592,11 @@
           <div class="playbook-desc">Know what your competitors are doing. Organized, searchable, shareable.</div>
         </div>
       </div>
-      <div class="playbook-item" onclick="this.classList.toggle('open')">
+      <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
         <div class="playbook-header">
           <div class="playbook-number">05</div>
           <div><div class="playbook-name">Customer FAQ Bot</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span></div></div>
-          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
           <div class="playbook-meta">
@@ -584,11 +608,11 @@
           <div class="playbook-desc">A chatbot that answers customer questions using your actual documentation, not made-up answers. Most complex project &mdash; most valuable.</div>
         </div>
       </div>
-      <div class="playbook-item" onclick="this.classList.toggle('open')">
+      <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
         <div class="playbook-header">
           <div class="playbook-number">06</div>
           <div><div class="playbook-name">Event Landing Page</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
-          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
           <div class="playbook-meta">
@@ -600,11 +624,11 @@
           <div class="playbook-desc">A page for your next webinar, conference, or product launch. Live in an afternoon.</div>
         </div>
       </div>
-      <div class="playbook-item" onclick="this.classList.toggle('open')">
+      <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
         <div class="playbook-header">
           <div class="playbook-number">07</div>
           <div><div class="playbook-name">Team Wiki / Knowledge Base</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
-          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
           <div class="playbook-meta">
@@ -616,11 +640,11 @@
           <div class="playbook-desc">Stop answering the same question in Slack for the fifteenth time.</div>
         </div>
       </div>
-      <div class="playbook-item" onclick="this.classList.toggle('open')">
+      <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
         <div class="playbook-header">
           <div class="playbook-number">08</div>
           <div><div class="playbook-name">Lead Scoring Prototype</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
-          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
           <div class="playbook-meta">
@@ -632,11 +656,11 @@
           <div class="playbook-desc">Score your leads based on your own criteria. No expensive tool required.</div>
         </div>
       </div>
-      <div class="playbook-item" onclick="this.classList.toggle('open')">
+      <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
         <div class="playbook-header">
           <div class="playbook-number">09</div>
           <div><div class="playbook-name">Budget Tracker</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
-          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
           <div class="playbook-meta">
@@ -648,11 +672,11 @@
           <div class="playbook-desc">Track your spending without giving your bank login to another app. Runs entirely on your computer.</div>
         </div>
       </div>
-      <div class="playbook-item" onclick="this.classList.toggle('open')">
+      <div class="playbook-item" role="button" tabindex="0" aria-expanded="false" onclick="togglePlaybook(this)">
         <div class="playbook-header">
           <div class="playbook-number">10</div>
           <div><div class="playbook-name">Email Campaign Builder</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip"></span><span class="playbook-pip"></span></div></div>
-          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="playbook-toggle"></div>
         </div>
         <div class="playbook-detail">
           <div class="playbook-meta">
@@ -710,5 +734,31 @@
   </a>
 </div>
 
+<script>
+function togglePlaybook(el) {
+  var expanded = el.getAttribute('aria-expanded') === 'true';
+  el.setAttribute('aria-expanded', !expanded);
+  updateToggleAllLabel();
+}
+function toggleAllPlaybooks() {
+  var items = document.querySelectorAll('#playbookList .playbook-item');
+  var anyOpen = Array.from(items).some(function(i) { return i.getAttribute('aria-expanded') === 'true'; });
+  items.forEach(function(i) { i.setAttribute('aria-expanded', !anyOpen); });
+  updateToggleAllLabel();
+}
+function updateToggleAllLabel() {
+  var items = document.querySelectorAll('#playbookList .playbook-item');
+  var anyOpen = Array.from(items).some(function(i) { return i.getAttribute('aria-expanded') === 'true'; });
+  var btn = document.getElementById('toggleAll');
+  btn.querySelector('span').textContent = anyOpen ? 'Collapse All' : 'Expand All';
+}
+// Keyboard support: Enter/Space to toggle
+document.addEventListener('keydown', function(e) {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('playbook-item')) {
+    e.preventDefault();
+    togglePlaybook(e.target);
+  }
+});
+</script>
 </body>
 </html>
