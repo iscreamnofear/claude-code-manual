@@ -18,7 +18,8 @@
     --ink: #1B2332; --ink-deep: #0F1520;
     --text: #2D3748; --text-light: #4A5568; --muted: #A0AEC0;
     --white: #FFFFFF; --bg: #F7FAFC;
-    --teal: #CC785C; --teal-dark: #B3674D; --teal-bg: #FFF5F0;
+    --teal: #0987A0; --teal-dark: #086F83; --teal-bg: #E6FFFA;
+    --brass: #CC785C; --brass-dark: #B3674D; --brass-bg: #FFF5F0;
     --rule: #E2E8F0;
     --orange: #DD6B20; --orange-bg: #FFFAF0;
   }
@@ -47,14 +48,14 @@
   .hero-badge {
     display: inline-block; font-size: 11px; font-weight: 600;
     letter-spacing: 2px; text-transform: uppercase;
-    color: var(--teal); margin-bottom: 24px; opacity: 0.8;
+    color: var(--brass); margin-bottom: 24px; opacity: 0.8;
   }
   .hero h1 {
     font-size: clamp(36px, 5vw, 56px); font-weight: 900;
     color: var(--white); line-height: 1.05; letter-spacing: -2px;
     margin-bottom: 24px;
   }
-  .hero h1 .teal { color: var(--teal); }
+  .hero h1 .teal { color: var(--brass); }
   .hero-subtitle {
     font-family: 'Lora', Georgia, serif; font-size: 18px;
     color: rgba(255,255,255,0.55); line-height: 1.7;
@@ -74,9 +75,9 @@
   }
   .btn-primary {
     background: var(--teal); color: var(--white);
-    box-shadow: 0 4px 14px rgba(204,120,92,0.3);
+    box-shadow: 0 4px 14px rgba(9,135,160,0.3);
   }
-  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(204,120,92,0.4); }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(9,135,160,0.4); }
   .btn-secondary {
     background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7);
     border: 1px solid rgba(255,255,255,0.12);
@@ -97,10 +98,10 @@
   .book-mockup img { width: 100%; height: 100%; object-fit: cover; }
   .book-mockup::before, .book-mockup::after {
     content: ''; position: absolute; width: 24px; height: 24px;
-    border-color: var(--teal); opacity: 0.4;
+    border-color: var(--brass); opacity: 0.4;
   }
-  .book-mockup::before { top: 12px; left: 12px; border-top: 2px solid var(--teal); border-left: 2px solid var(--teal); }
-  .book-mockup::after { bottom: 12px; right: 12px; border-bottom: 2px solid var(--teal); border-right: 2px solid var(--teal); }
+  .book-mockup::before { top: 12px; left: 12px; border-top: 2px solid var(--brass); border-left: 2px solid var(--brass); }
+  .book-mockup::after { bottom: 12px; right: 12px; border-bottom: 2px solid var(--brass); border-right: 2px solid var(--brass); }
 
   /* ── STATS BAR ── */
   .stats {
@@ -126,10 +127,10 @@
     border: 1px solid var(--rule); background: var(--white);
     transition: all 0.2s ease;
   }
-  .for-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(204,120,92,0.08); }
+  .for-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(9,135,160,0.08); }
   .for-icon {
     width: 40px; height: 40px; border-radius: 10px;
-    background: var(--teal-bg); color: var(--teal);
+    background: var(--brass-bg); color: var(--brass);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 16px;
   }
@@ -146,7 +147,7 @@
   .inside { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
   .section-label {
     font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
-    text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+    text-transform: uppercase; color: var(--brass); margin-bottom: 12px;
   }
   .section-title {
     font-size: 32px; font-weight: 800; color: var(--ink);
@@ -164,10 +165,10 @@
     background: var(--bg); border-radius: 10px; padding: 28px;
     border: 1px solid var(--rule); transition: all 0.2s ease;
   }
-  .chapter-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(204,120,92,0.08); }
+  .chapter-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(9,135,160,0.08); }
   .chapter-num {
     font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--teal); margin-bottom: 10px;
+    text-transform: uppercase; color: var(--brass); margin-bottom: 10px;
   }
   .chapter-name {
     font-size: 17px; font-weight: 700; color: var(--ink);
@@ -180,7 +181,7 @@
   /* ── MID-PAGE CTA ── */
   .mid-cta {
     background: var(--teal-bg); padding: 48px 24px; text-align: center;
-    border-top: 1px solid rgba(204,120,92,0.15); border-bottom: 1px solid rgba(204,120,92,0.15);
+    border-top: 1px solid rgba(9,135,160,0.15); border-bottom: 1px solid rgba(9,135,160,0.15);
   }
   .mid-cta-inner { max-width: 560px; margin: 0 auto; }
   .mid-cta p {
@@ -195,7 +196,7 @@
     background: var(--ink-deep); padding: 80px 24px; color: var(--white);
   }
   .playbooks-inner { max-width: 900px; margin: 0 auto; }
-  .playbooks .section-label { color: var(--teal); }
+  .playbooks .section-label { color: var(--brass); }
   .playbooks .section-title { color: var(--white); }
   .playbooks .section-desc { color: rgba(255,255,255,0.5); }
   .playbook-list { display: flex; flex-direction: column; gap: 0; }
@@ -209,15 +210,15 @@
   .playbook-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); border-radius: 0 0 8px 8px; }
   .playbook-item:only-child { border-radius: 8px; }
   .playbook-number {
-    font-size: 20px; font-weight: 800; color: var(--teal); min-width: 36px;
+    font-size: 20px; font-weight: 800; color: var(--brass); min-width: 36px;
   }
   .playbook-name { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.8); }
   .playbook-pips { display: flex; gap: 3px; margin-top: 4px; }
   .playbook-pip {
     width: 8px; height: 8px; border-radius: 50%;
-    border: 1.5px solid var(--teal);
+    border: 1.5px solid var(--brass);
   }
-  .playbook-pip.filled { background: var(--teal); }
+  .playbook-pip.filled { background: var(--brass); }
 
   /* Accordion expand/collapse */
   .playbook-controls {
@@ -241,7 +242,7 @@
     pointer-events: none; border-radius: 50%;
     background: rgba(255,255,255,0.06); transition: all 0.25s ease;
   }
-  .playbook-item[aria-expanded="true"] .playbook-toggle { background: rgba(204,120,92,0.2); }
+  .playbook-item[aria-expanded="true"] .playbook-toggle { background: rgba(204,120,92,0.25); }
   .playbook-toggle::before, .playbook-toggle::after {
     content: ''; position: absolute;
     background: rgba(255,255,255,0.4); border-radius: 1px;
@@ -250,7 +251,7 @@
   .playbook-toggle::before { width: 12px; height: 2px; }
   .playbook-toggle::after { width: 2px; height: 12px; }
   .playbook-item[aria-expanded="true"] .playbook-toggle::after { transform: rotate(90deg); opacity: 0; }
-  .playbook-item[aria-expanded="true"] .playbook-toggle::before { background: var(--teal); }
+  .playbook-item[aria-expanded="true"] .playbook-toggle::before { background: var(--brass); }
   .playbook-detail {
     width: 100%; overflow: hidden; max-height: 0; opacity: 0;
     transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
@@ -405,14 +406,14 @@
     <div class="hero-book">
       <div class="book-mockup">
         <div style="width:100%;height:100%;background:var(--ink-deep);display:flex;flex-direction:column;justify-content:center;padding:24px;">
-          <div style="font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:16px;opacity:0.7;">February 2026 Edition</div>
+          <div style="font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--brass);margin-bottom:16px;opacity:0.7;">February 2026 Edition</div>
           <div style="font-size:28px;font-weight:900;color:white;line-height:1.05;letter-spacing:-1.5px;margin-bottom:12px;">
             <span style="font-size:18px;font-weight:700;">Ofir's</span><br>
-            <span style="color:var(--teal);">Claude Code</span><br>
+            <span style="color:var(--brass);">Claude Code</span><br>
             Field Manual
           </div>
           <div style="font-family:'Lora',serif;font-size:8px;color:rgba(255,255,255,0.4);line-height:1.6;max-width:200px;">A practical guide for non-developers who want to build real things.</div>
-          <div style="width:24px;height:2px;background:var(--teal);margin:12px 0 8px;opacity:0.6;"></div>
+          <div style="width:24px;height:2px;background:var(--brass);margin:12px 0 8px;opacity:0.6;"></div>
           <div style="font-size:7px;color:rgba(255,255,255,0.35);">Ofir Bloch &nbsp;&bull;&nbsp; 10 Project Playbooks</div>
         </div>
       </div>
