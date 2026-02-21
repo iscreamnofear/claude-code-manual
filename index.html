@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Claude Code Field Manual — Free Guide for Non-Developers | Ofir Bloch</title>
+<title>Ofir's Claude Code Field Manual — Free Guide for Non-Developers | Ofir Bloch</title>
 <meta name="description" content="A practical guide for non-developers who want to build dashboards, websites, and automations with Claude Code. No coding experience required.">
-<meta property="og:title" content="The Claude Code Field Manual">
+<meta property="og:title" content="Ofir's Claude Code Field Manual">
 <meta property="og:description" content="Build real things with AI — no coding required. Free guide by Ofir Bloch.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ofirbloch.com/claude-code-manual/">
@@ -222,12 +222,32 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
+    .hero { padding: 60px 20px 72px; }
     .hero-inner { flex-direction: column-reverse; gap: 40px; text-align: center; }
-    .hero-subtitle { margin-left: auto; margin-right: auto; }
+    .hero-subtitle { margin-left: auto; margin-right: auto; font-size: 16px; }
     .hero-actions { justify-content: center; }
-    .hero-book { width: 220px; }
+    .hero-book { width: 200px; }
     .author-inner { flex-direction: column; text-align: center; }
-    .stats-inner { gap: 32px; }
+    .stats-inner { gap: 24px; }
+    .stat-num { font-size: 24px; }
+    .inside { padding: 56px 20px; }
+    .section-title { font-size: 26px; }
+    .section-desc { font-size: 15px; }
+    .playbooks { padding: 56px 20px; }
+    .playbook-list { grid-template-columns: 1fr; }
+    .chapters-grid { grid-template-columns: 1fr; }
+    .cta-bottom { padding: 56px 20px; }
+    .cta-bottom h2 { font-size: 26px; }
+    .author-section { padding: 56px 20px; }
+    .btn { padding: 14px 24px; font-size: 14px; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 32px; letter-spacing: -1px; }
+    .hero-book { width: 160px; }
+    .stats-inner { flex-direction: column; gap: 16px; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .cta-actions { flex-direction: column; align-items: center; }
+    .btn { width: 100%; justify-content: center; }
   }
 </style>
 </head>
@@ -238,7 +258,7 @@
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-badge">Free Guide &mdash; February 2026</div>
-      <h1>The <span class="teal">Claude Code</span><br>Field Manual</h1>
+      <h1>Ofir's <span class="teal">Claude Code</span><br>Field Manual</h1>
       <p class="hero-subtitle">A practical guide for non-developers who want to build real things &mdash; dashboards, websites, automations &mdash; without writing code or waiting for IT.</p>
       <div class="hero-actions">
         <a href="https://www.linkedin.com/in/ofir-bloch/" target="_blank" rel="noopener" class="btn btn-primary">
@@ -257,7 +277,7 @@
         <div style="width:100%;height:100%;background:var(--ink-deep);display:flex;flex-direction:column;justify-content:center;padding:24px;">
           <div style="font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:16px;opacity:0.7;">February 2026 Edition</div>
           <div style="font-size:28px;font-weight:900;color:white;line-height:1.05;letter-spacing:-1.5px;margin-bottom:12px;">
-            <span style="font-size:18px;font-weight:700;">The</span><br>
+            <span style="font-size:18px;font-weight:700;">Ofir's</span><br>
             <span style="color:var(--teal);">Claude Code</span><br>
             Field Manual
           </div>
@@ -275,7 +295,7 @@
   <div class="stats-inner">
     <div class="stat"><div class="stat-num">6</div><div class="stat-label">Parts</div></div>
     <div class="stat"><div class="stat-num">10</div><div class="stat-label">Project Playbooks</div></div>
-    <div class="stat"><div class="stat-num">42</div><div class="stat-label">Pages</div></div>
+    <div class="stat"><div class="stat-num">48</div><div class="stat-label">Pages</div></div>
     <div class="stat"><div class="stat-num">0</div><div class="stat-label">Lines of Code Required</div></div>
   </div>
 </section>
@@ -401,7 +421,7 @@
 </section>
 
 <footer>
-  &copy; 2026 Ofir Bloch. All rights reserved. &nbsp;&bull;&nbsp; The Claude Code Field Manual
+  &copy; 2026 Ofir Bloch. All rights reserved. &nbsp;&bull;&nbsp; Ofir's Claude Code Field Manual
 </footer>
 
 </body>
