@@ -215,6 +215,38 @@
   }
   .playbook-pip.filled { background: var(--teal); }
 
+  /* Accordion expand */
+  .playbook-item { cursor: pointer; position: relative; flex-wrap: wrap; transition: all 0.25s ease; }
+  .playbook-item:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
+  .playbook-header { display: flex; align-items: center; gap: 16px; width: 100%; pointer-events: none; }
+  .playbook-toggle {
+    margin-left: auto; width: 24px; height: 24px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  .playbook-toggle svg {
+    width: 16px; height: 16px; stroke: rgba(255,255,255,0.3);
+    transition: transform 0.25s ease;
+  }
+  .playbook-item.open .playbook-toggle svg { transform: rotate(180deg); }
+  .playbook-detail {
+    width: 100%; overflow: hidden; max-height: 0;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    padding: 0 0 0 48px;
+  }
+  .playbook-item.open .playbook-detail {
+    max-height: 300px; padding: 14px 0 4px 48px;
+  }
+  .playbook-meta {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
+    font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5;
+  }
+  .playbook-meta strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+  .playbook-desc {
+    margin-top: 10px; font-family: 'Lora', serif; font-size: 13px;
+    color: rgba(255,255,255,0.4); line-height: 1.6; font-style: italic;
+  }
+
   /* ── AUTHOR ── */
   .author-section { padding: 80px 24px; border-top: 1px solid var(--rule); }
   .author-inner {
@@ -305,6 +337,8 @@
     .section-desc { font-size: 15px; }
     .playbooks { padding: 56px 20px; }
     .playbook-list { grid-template-columns: 1fr; }
+    .playbook-meta { grid-template-columns: 1fr; }
+    .playbook-item.open .playbook-detail { padding-left: 48px; }
     .chapters-grid { grid-template-columns: 1fr; }
     .for-grid { grid-template-columns: 1fr; }
     .cta-bottom { padding: 56px 20px 100px; }
@@ -470,45 +504,165 @@
     <h2 class="section-title">10 copy-paste project playbooks</h2>
     <p class="section-desc">Real projects. Exact prompts. Each playbook tells you who it's for, what you'll build, and how long it takes.</p>
     <div class="playbook-list">
-      <div class="playbook-item">
-        <div class="playbook-number">01</div>
-        <div><div class="playbook-name">Spreadsheet to Dashboard</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+      <div class="playbook-item" onclick="this.classList.toggle('open')">
+        <div class="playbook-header">
+          <div class="playbook-number">01</div>
+          <div><div class="playbook-name">Spreadsheet to Dashboard</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="playbook-detail">
+          <div class="playbook-meta">
+            <div><strong>Who:</strong> Marketing ops, sales ops, CS leads</div>
+            <div><strong>Time:</strong> 30&ndash;60 minutes</div>
+            <div><strong>You get:</strong> Live dashboard with charts &amp; filters</div>
+            <div><strong>Tool:</strong> Claude Code Desktop</div>
+          </div>
+          <div class="playbook-desc">Your boss wants a dashboard. You have the data in Excel. Skip the six-week dev request.</div>
+        </div>
       </div>
-      <div class="playbook-item">
-        <div class="playbook-number">02</div>
-        <div><div class="playbook-name">Marketing Website</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+      <div class="playbook-item" onclick="this.classList.toggle('open')">
+        <div class="playbook-header">
+          <div class="playbook-number">02</div>
+          <div><div class="playbook-name">Marketing Website</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="playbook-detail">
+          <div class="playbook-meta">
+            <div><strong>Who:</strong> Marketing managers, founders</div>
+            <div><strong>Time:</strong> 1&ndash;2 hours</div>
+            <div><strong>You get:</strong> Multi-page site (home, about, contact)</div>
+            <div><strong>Tool:</strong> Claude Code Desktop</div>
+          </div>
+          <div class="playbook-desc">A professional site you control, without waiting for the web team.</div>
+        </div>
       </div>
-      <div class="playbook-item">
-        <div class="playbook-number">03</div>
-        <div><div class="playbook-name">Monday Morning Report</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip"></span><span class="playbook-pip"></span></div></div>
+      <div class="playbook-item" onclick="this.classList.toggle('open')">
+        <div class="playbook-header">
+          <div class="playbook-number">03</div>
+          <div><div class="playbook-name">Monday Morning Report</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip"></span><span class="playbook-pip"></span></div></div>
+          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="playbook-detail">
+          <div class="playbook-meta">
+            <div><strong>Who:</strong> Anyone reporting weekly metrics</div>
+            <div><strong>Time:</strong> 15 min first run, 2 min after</div>
+            <div><strong>You get:</strong> Formatted executive summary</div>
+            <div><strong>Tool:</strong> Cowork</div>
+          </div>
+          <div class="playbook-desc">The report your boss reads every Monday, built automatically from your data. Saves 30&ndash;45 min/week.</div>
+        </div>
       </div>
-      <div class="playbook-item">
-        <div class="playbook-number">04</div>
-        <div><div class="playbook-name">Competitive Intel Tracker</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip"></span><span class="playbook-pip"></span></div></div>
+      <div class="playbook-item" onclick="this.classList.toggle('open')">
+        <div class="playbook-header">
+          <div class="playbook-number">04</div>
+          <div><div class="playbook-name">Competitive Intel Tracker</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip"></span><span class="playbook-pip"></span></div></div>
+          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="playbook-detail">
+          <div class="playbook-meta">
+            <div><strong>Who:</strong> Product marketing, strategy, sales</div>
+            <div><strong>Time:</strong> 45 min setup, 15 min monthly</div>
+            <div><strong>You get:</strong> Organized competitive tracker</div>
+            <div><strong>Tool:</strong> Cowork</div>
+          </div>
+          <div class="playbook-desc">Know what your competitors are doing. Organized, searchable, shareable.</div>
+        </div>
       </div>
-      <div class="playbook-item">
-        <div class="playbook-number">05</div>
-        <div><div class="playbook-name">Customer FAQ Bot</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span></div></div>
+      <div class="playbook-item" onclick="this.classList.toggle('open')">
+        <div class="playbook-header">
+          <div class="playbook-number">05</div>
+          <div><div class="playbook-name">Customer FAQ Bot</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span></div></div>
+          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="playbook-detail">
+          <div class="playbook-meta">
+            <div><strong>Who:</strong> Customer success, support, product</div>
+            <div><strong>Time:</strong> 3&ndash;5 hours</div>
+            <div><strong>You get:</strong> Chat widget trained on your docs</div>
+            <div><strong>Tool:</strong> Claude Code Desktop</div>
+          </div>
+          <div class="playbook-desc">A chatbot that answers customer questions using your actual documentation, not made-up answers. Most complex project &mdash; most valuable.</div>
+        </div>
       </div>
-      <div class="playbook-item">
-        <div class="playbook-number">06</div>
-        <div><div class="playbook-name">Event Landing Page</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+      <div class="playbook-item" onclick="this.classList.toggle('open')">
+        <div class="playbook-header">
+          <div class="playbook-number">06</div>
+          <div><div class="playbook-name">Event Landing Page</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="playbook-detail">
+          <div class="playbook-meta">
+            <div><strong>Who:</strong> Event marketers, demand gen</div>
+            <div><strong>Time:</strong> 1&ndash;2 hours</div>
+            <div><strong>You get:</strong> Landing page with registration form</div>
+            <div><strong>Tool:</strong> Claude Code Desktop</div>
+          </div>
+          <div class="playbook-desc">A page for your next webinar, conference, or product launch. Live in an afternoon.</div>
+        </div>
       </div>
-      <div class="playbook-item">
-        <div class="playbook-number">07</div>
-        <div><div class="playbook-name">Team Wiki / Knowledge Base</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+      <div class="playbook-item" onclick="this.classList.toggle('open')">
+        <div class="playbook-header">
+          <div class="playbook-number">07</div>
+          <div><div class="playbook-name">Team Wiki / Knowledge Base</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="playbook-detail">
+          <div class="playbook-meta">
+            <div><strong>Who:</strong> Team leads, ops managers</div>
+            <div><strong>Time:</strong> 2&ndash;3 hours</div>
+            <div><strong>You get:</strong> Internal wiki with search &amp; categories</div>
+            <div><strong>Tool:</strong> Claude Code Desktop</div>
+          </div>
+          <div class="playbook-desc">Stop answering the same question in Slack for the fifteenth time.</div>
+        </div>
       </div>
-      <div class="playbook-item">
-        <div class="playbook-number">08</div>
-        <div><div class="playbook-name">Lead Scoring Prototype</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+      <div class="playbook-item" onclick="this.classList.toggle('open')">
+        <div class="playbook-header">
+          <div class="playbook-number">08</div>
+          <div><div class="playbook-name">Lead Scoring Prototype</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="playbook-detail">
+          <div class="playbook-meta">
+            <div><strong>Who:</strong> Sales ops, revenue ops, marketing ops</div>
+            <div><strong>Time:</strong> 1&ndash;2 hours</div>
+            <div><strong>You get:</strong> Scored &amp; ranked lead list from CSV</div>
+            <div><strong>Tool:</strong> Claude Code Desktop</div>
+          </div>
+          <div class="playbook-desc">Score your leads based on your own criteria. No expensive tool required.</div>
+        </div>
       </div>
-      <div class="playbook-item">
-        <div class="playbook-number">09</div>
-        <div><div class="playbook-name">Budget Tracker</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+      <div class="playbook-item" onclick="this.classList.toggle('open')">
+        <div class="playbook-header">
+          <div class="playbook-number">09</div>
+          <div><div class="playbook-name">Budget Tracker</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip filled"></span><span class="playbook-pip"></span></div></div>
+          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="playbook-detail">
+          <div class="playbook-meta">
+            <div><strong>Who:</strong> Anyone tracking spending</div>
+            <div><strong>Time:</strong> 1&ndash;2 hours</div>
+            <div><strong>You get:</strong> Budget tracker with charts &amp; categories</div>
+            <div><strong>Tool:</strong> Claude Code Desktop</div>
+          </div>
+          <div class="playbook-desc">Track your spending without giving your bank login to another app. Runs entirely on your computer.</div>
+        </div>
       </div>
-      <div class="playbook-item">
-        <div class="playbook-number">10</div>
-        <div><div class="playbook-name">Email Campaign Builder</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip"></span><span class="playbook-pip"></span></div></div>
+      <div class="playbook-item" onclick="this.classList.toggle('open')">
+        <div class="playbook-header">
+          <div class="playbook-number">10</div>
+          <div><div class="playbook-name">Email Campaign Builder</div><div class="playbook-pips"><span class="playbook-pip filled"></span><span class="playbook-pip"></span><span class="playbook-pip"></span></div></div>
+          <div class="playbook-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="playbook-detail">
+          <div class="playbook-meta">
+            <div><strong>Who:</strong> Email marketers, demand gen, lifecycle</div>
+            <div><strong>Time:</strong> 20&ndash;30 minutes</div>
+            <div><strong>You get:</strong> Complete 5-email nurture sequence</div>
+            <div><strong>Tool:</strong> Cowork</div>
+          </div>
+          <div class="playbook-desc">Plan and draft an entire email sequence with your brand voice.</div>
+        </div>
       </div>
     </div>
   </div>
