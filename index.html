@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ofir's Claude Code Field Manual — Free Guide for Non-Developers | Ofir Bloch</title>
-<meta name="description" content="A practical guide for non-developers who want to build dashboards, websites, and automations with Claude Code. No coding experience required.">
-<meta property="og:title" content="Ofir's Claude Code Field Manual">
-<meta property="og:description" content="Build real things with AI — no coding required. Free guide by Ofir Bloch.">
+<meta name="description" content="A free 48-page guide for non-developers who want to build dashboards, websites, and automations with Claude Code. No coding experience required. By Ofir Bloch.">
+<meta property="og:title" content="Ofir's Claude Code Field Manual — Build Real Things with AI">
+<meta property="og:description" content="48 pages. 10 project playbooks. Zero coding required. The free guide that turns non-technical teams into builders.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ofirbloch.com/claude-code-manual/">
+<meta property="og:url" content="https://manual.ofirbloch.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
     --white: #FFFFFF; --bg: #F7FAFC;
     --teal: #0987A0; --teal-dark: #086F83; --teal-bg: #E6FFFA;
     --rule: #E2E8F0;
+    --orange: #DD6B20; --orange-bg: #FFFAF0;
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'Inter', -apple-system, sans-serif; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; }
@@ -28,7 +29,7 @@
   .hero {
     background: var(--ink-deep);
     position: relative; overflow: hidden;
-    padding: 80px 24px 100px;
+    padding: 80px 24px 96px;
   }
   .hero::before {
     content: ''; position: absolute; inset: 0;
@@ -57,8 +58,13 @@
   .hero-subtitle {
     font-family: 'Lora', Georgia, serif; font-size: 18px;
     color: rgba(255,255,255,0.55); line-height: 1.7;
-    max-width: 480px; margin-bottom: 40px;
+    max-width: 480px; margin-bottom: 32px;
   }
+  .hero-proof {
+    font-size: 13px; color: rgba(255,255,255,0.35);
+    margin-bottom: 32px; display: flex; align-items: center; gap: 8px;
+  }
+  .hero-proof svg { width: 16px; height: 16px; opacity: 0.5; }
   .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
   .btn {
     display: inline-flex; align-items: center; gap: 10px;
@@ -77,11 +83,11 @@
   }
   .btn-secondary:hover { background: rgba(255,255,255,0.12); color: var(--white); }
   .btn svg { width: 18px; height: 18px; }
+  .btn-arrow { margin-left: 4px; transition: transform 0.2s ease; }
+  .btn:hover .btn-arrow { transform: translateX(3px); }
 
   /* Book mockup */
-  .hero-book {
-    flex-shrink: 0; width: 320px;
-  }
+  .hero-book { flex-shrink: 0; width: 320px; }
   .book-mockup {
     width: 100%; aspect-ratio: 816/1056;
     background: var(--ink); border-radius: 8px;
@@ -89,7 +95,6 @@
     overflow: hidden; position: relative;
   }
   .book-mockup img { width: 100%; height: 100%; object-fit: cover; }
-  /* Corner brackets on mockup */
   .book-mockup::before, .book-mockup::after {
     content: ''; position: absolute; width: 24px; height: 24px;
     border-color: var(--teal); opacity: 0.4;
@@ -109,6 +114,33 @@
   .stat { text-align: center; }
   .stat-num { font-size: 28px; font-weight: 800; color: var(--teal); letter-spacing: -1px; }
   .stat-label { font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+  /* ── WHO IS THIS FOR ── */
+  .for-section { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
+  .for-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px; margin-top: 48px;
+  }
+  .for-card {
+    padding: 28px; border-radius: 10px;
+    border: 1px solid var(--rule); background: var(--white);
+    transition: all 0.2s ease;
+  }
+  .for-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(9,135,160,0.08); }
+  .for-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--teal-bg); color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .for-icon svg { width: 20px; height: 20px; }
+  .for-title {
+    font-size: 16px; font-weight: 700; color: var(--ink);
+    margin-bottom: 8px; line-height: 1.3;
+  }
+  .for-desc {
+    font-family: 'Lora', serif; font-size: 14px; color: var(--text-light); line-height: 1.6;
+  }
 
   /* ── WHAT'S INSIDE ── */
   .inside { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
@@ -145,6 +177,19 @@
     font-family: 'Lora', serif; font-size: 13.5px; color: var(--text-light); line-height: 1.6;
   }
 
+  /* ── MID-PAGE CTA ── */
+  .mid-cta {
+    background: var(--teal-bg); padding: 48px 24px; text-align: center;
+    border-top: 1px solid rgba(9,135,160,0.15); border-bottom: 1px solid rgba(9,135,160,0.15);
+  }
+  .mid-cta-inner { max-width: 560px; margin: 0 auto; }
+  .mid-cta p {
+    font-family: 'Lora', serif; font-size: 18px; color: var(--ink);
+    line-height: 1.6; margin-bottom: 24px; font-weight: 500;
+  }
+  .mid-cta .btn-primary { background: var(--teal); color: var(--white); }
+  .mid-cta .btn-primary:hover { background: var(--teal-dark); }
+
   /* ── PLAYBOOKS ── */
   .playbooks {
     background: var(--ink-deep); padding: 80px 24px; color: var(--white);
@@ -163,9 +208,7 @@
     font-size: 20px; font-weight: 800; color: var(--teal); min-width: 32px;
   }
   .playbook-name { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); }
-  .playbook-pips {
-    display: flex; gap: 3px; margin-top: 4px;
-  }
+  .playbook-pips { display: flex; gap: 3px; margin-top: 4px; }
   .playbook-pip {
     width: 8px; height: 8px; border-radius: 50%;
     border: 1.5px solid var(--teal);
@@ -176,21 +219,27 @@
   .author-section { padding: 80px 24px; border-top: 1px solid var(--rule); }
   .author-inner {
     max-width: 700px; margin: 0 auto;
-    display: flex; align-items: center; gap: 32px;
+    display: flex; align-items: flex-start; gap: 32px;
   }
   .author-avatar {
-    width: 80px; height: 80px; border-radius: 50%;
+    width: 96px; height: 96px; border-radius: 50%;
     flex-shrink: 0; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   }
-  .author-avatar img {
-    width: 100%; height: 100%; object-fit: cover;
-  }
-  .author-name { font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-  .author-role { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .author-name { font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .author-role { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
   .author-bio {
     font-family: 'Lora', serif; font-size: 15px; color: var(--text-light);
-    line-height: 1.7;
+    line-height: 1.7; margin-bottom: 16px;
   }
+  .author-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 600; color: var(--teal);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .author-link:hover { color: var(--teal-dark); }
+  .author-link svg { width: 16px; height: 16px; }
 
   /* ── CTA BOTTOM ── */
   .cta-bottom {
@@ -213,12 +262,30 @@
     font-family: 'Lora', serif; font-size: 16px;
     color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 32px;
   }
-  .cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .cta-bottom .btn-primary { font-size: 17px; padding: 18px 40px; }
+  .cta-bottom-sub {
+    margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.3);
+  }
 
   /* ── FOOTER ── */
   footer {
     padding: 32px 24px; text-align: center;
     font-size: 12px; color: var(--muted); border-top: 1px solid var(--rule);
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── STICKY MOBILE CTA ── */
+  .sticky-cta {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--ink-deep); padding: 12px 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 100;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  }
+  .sticky-cta .btn {
+    width: 100%; justify-content: center;
+    padding: 14px 24px; font-size: 15px;
   }
 
   /* ── RESPONSIVE ── */
@@ -226,28 +293,32 @@
     .hero { padding: 60px 20px 72px; }
     .hero-inner { flex-direction: column-reverse; gap: 40px; text-align: center; }
     .hero-subtitle { margin-left: auto; margin-right: auto; font-size: 16px; }
+    .hero-proof { justify-content: center; }
     .hero-actions { justify-content: center; }
     .hero-book { width: 200px; }
-    .author-inner { flex-direction: column; text-align: center; }
+    .author-inner { flex-direction: column; text-align: center; align-items: center; }
     .stats-inner { gap: 24px; }
     .stat-num { font-size: 24px; }
+    .for-section { padding: 56px 20px; }
     .inside { padding: 56px 20px; }
     .section-title { font-size: 26px; }
     .section-desc { font-size: 15px; }
     .playbooks { padding: 56px 20px; }
     .playbook-list { grid-template-columns: 1fr; }
     .chapters-grid { grid-template-columns: 1fr; }
-    .cta-bottom { padding: 56px 20px; }
+    .for-grid { grid-template-columns: 1fr; }
+    .cta-bottom { padding: 56px 20px 100px; }
     .cta-bottom h2 { font-size: 26px; }
     .author-section { padding: 56px 20px; }
     .btn { padding: 14px 24px; font-size: 14px; }
+    .sticky-cta { display: block; }
+    footer { padding-bottom: 80px; }
   }
   @media (max-width: 480px) {
     .hero h1 { font-size: 32px; letter-spacing: -1px; }
     .hero-book { width: 160px; }
     .stats-inner { flex-direction: column; gap: 16px; }
     .hero-actions { flex-direction: column; align-items: center; }
-    .cta-actions { flex-direction: column; align-items: center; }
     .btn { width: 100%; justify-content: center; }
   }
 </style>
@@ -258,23 +329,26 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-badge">Free Guide &mdash; February 2026</div>
-      <h1>Ofir's <span class="teal">Claude Code</span><br>Field Manual</h1>
-      <p class="hero-subtitle">A practical guide for non-developers who want to build real things &mdash; dashboards, websites, automations &mdash; without writing code or waiting for IT.</p>
+      <div class="hero-badge">Free 48-Page Guide &mdash; 2026 Edition</div>
+      <h1>Stop waiting for IT.<br>Start <span class="teal">building</span>.</h1>
+      <p class="hero-subtitle">A free field manual that teaches non-developers how to build dashboards, websites, and automations with Claude Code &mdash; no coding required.</p>
+      <div class="hero-proof">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Free PDF &bull; No email required &bull; Instant download
+      </div>
       <div class="hero-actions">
-        <a href="https://www.linkedin.com/in/ofir-bloch/" target="_blank" rel="noopener" class="btn btn-primary">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          Follow me on LinkedIn
-        </a>
-        <a href="./Claude_Code_Field_Manual.pdf" class="btn btn-secondary" download>
+        <a href="./Claude_Code_Field_Manual.pdf" class="btn btn-primary" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download the Guide (PDF)
+          Get My Free Copy
+          <span class="btn-arrow">&rarr;</span>
+        </a>
+        <a href="#whats-inside" class="btn btn-secondary">
+          See what's inside
         </a>
       </div>
     </div>
     <div class="hero-book">
       <div class="book-mockup">
-        <!-- We'll screenshot the cover for this, or use an image -->
         <div style="width:100%;height:100%;background:var(--ink-deep);display:flex;flex-direction:column;justify-content:center;padding:24px;">
           <div style="font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:16px;opacity:0.7;">February 2026 Edition</div>
           <div style="font-size:28px;font-weight:900;color:white;line-height:1.05;letter-spacing:-1.5px;margin-bottom:12px;">
@@ -294,58 +368,107 @@
 <!-- ═══════ STATS ═══════ -->
 <section class="stats">
   <div class="stats-inner">
-    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Parts</div></div>
-    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Project Playbooks</div></div>
     <div class="stat"><div class="stat-num">48</div><div class="stat-label">Pages</div></div>
-    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Lines of Code Required</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Project Playbooks</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Lines of Code</div></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">Afternoon to Learn</div></div>
+  </div>
+</section>
+
+<!-- ═══════ WHO IS THIS FOR ═══════ -->
+<section class="for-section">
+  <div class="section-label">Who This Is For</div>
+  <h2 class="section-title">Built for people who don't write code</h2>
+  <p class="section-desc">If you've ever thought "I wish I could just build this myself," this guide is for you.</p>
+  <div class="for-grid">
+    <div class="for-card">
+      <div class="for-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div class="for-title">Marketing teams</div>
+      <div class="for-desc">Build campaign dashboards, landing pages, and competitive trackers without waiting for dev.</div>
+    </div>
+    <div class="for-card">
+      <div class="for-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div class="for-title">Operations &amp; CS leaders</div>
+      <div class="for-desc">Automate Monday morning reports, build FAQ bots, and create team wikis.</div>
+    </div>
+    <div class="for-card">
+      <div class="for-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      <div class="for-title">Sales &amp; revenue teams</div>
+      <div class="for-desc">Prototype lead scoring tools, budget trackers, and email campaign builders.</div>
+    </div>
+    <div class="for-card">
+      <div class="for-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      </div>
+      <div class="for-title">Curious non-technical execs</div>
+      <div class="for-desc">Understand what AI can actually build today &mdash; and how to lead teams that use it.</div>
+    </div>
   </div>
 </section>
 
 <!-- ═══════ WHAT'S INSIDE ═══════ -->
-<section class="inside">
+<section class="inside" id="whats-inside">
   <div class="section-label">What's Inside</div>
-  <h2 class="section-title">From zero to building real things</h2>
-  <p class="section-desc">Six parts that take you from "what is this?" to deploying projects your team actually uses. Each chapter builds on the last. No jargon. No filler.</p>
+  <h2 class="section-title">From "what is this?" to shipping real tools</h2>
+  <p class="section-desc">Six parts that build on each other. Start anywhere. Each chapter is self-contained, jargon-free, and designed to get you building fast.</p>
   <div class="chapters-grid">
     <div class="chapter-card">
       <div class="chapter-num">Part 1</div>
       <div class="chapter-name">What Is This Thing?</div>
-      <div class="chapter-detail">Claude vs Cowork vs Claude Code. What each does. Why you'd care.</div>
+      <div class="chapter-detail">Claude vs Cowork vs Claude Code. What each does and when to use which one.</div>
     </div>
     <div class="chapter-card">
       <div class="chapter-num">Part 2</div>
       <div class="chapter-name">Start Here: Cowork</div>
-      <div class="chapter-detail">Your comfort zone. Turn messy docs into clean reports. No code.</div>
+      <div class="chapter-detail">Your comfort zone. Turn messy docs into clean reports without touching code.</div>
     </div>
     <div class="chapter-card">
       <div class="chapter-num">Part 3</div>
       <div class="chapter-name">Claude Code Desktop</div>
-      <div class="chapter-detail">Build websites, dashboards, and tools. Deploy them to the internet.</div>
+      <div class="chapter-detail">Build websites, dashboards, and tools &mdash; then deploy them to the internet.</div>
     </div>
     <div class="chapter-card">
       <div class="chapter-num">Part 4</div>
       <div class="chapter-name">Talking to Claude</div>
-      <div class="chapter-detail">The five rules for prompting. Bad ask vs good ask. Feedback loops.</div>
+      <div class="chapter-detail">Five prompting rules. Bad ask vs good ask. How to give feedback that works.</div>
     </div>
     <div class="chapter-card">
       <div class="chapter-num">Part 5</div>
       <div class="chapter-name">The Safety Stuff</div>
-      <div class="chapter-detail">Permissions, undo, and protecting your files. Five minutes now saves a bad day later.</div>
+      <div class="chapter-detail">Permissions, undo, and protecting your files. Five minutes saves a bad day.</div>
     </div>
     <div class="chapter-card">
       <div class="chapter-num">Part 6</div>
       <div class="chapter-name">When Things Go Wrong</div>
-      <div class="chapter-detail">Hallucination, loops, blank previews. What to do for each.</div>
+      <div class="chapter-detail">Hallucinations, loops, blank previews. What to do for each &mdash; and when to start over.</div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════ MID-PAGE CTA ═══════ -->
+<section class="mid-cta">
+  <div class="mid-cta-inner">
+    <p>48 pages. 10 playbooks. Zero code required.<br>Grab your copy &mdash; it takes two seconds.</p>
+    <a href="./Claude_Code_Field_Manual.pdf" class="btn btn-primary" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download the Free Guide
+      <span class="btn-arrow">&rarr;</span>
+    </a>
   </div>
 </section>
 
 <!-- ═══════ PLAYBOOKS ═══════ -->
 <section class="playbooks">
   <div class="playbooks-inner">
-    <div class="section-label">Bonus</div>
-    <h2 class="section-title">10 step-by-step project playbooks</h2>
-    <p class="section-desc">Real projects. Exact prompts. Copy, paste, build. Each playbook tells you who it's for, what you'll get, and how long it takes.</p>
+    <div class="section-label">Included</div>
+    <h2 class="section-title">10 copy-paste project playbooks</h2>
+    <p class="section-desc">Real projects. Exact prompts. Each playbook tells you who it's for, what you'll build, and how long it takes.</p>
     <div class="playbook-list">
       <div class="playbook-item">
         <div class="playbook-number">01</div>
@@ -399,6 +522,10 @@
       <div class="author-name">Ofir Bloch</div>
       <div class="author-role">Marketing Executive</div>
       <p class="author-bio">I'm a marketing executive, not an engineer. I wrote this guide because I wanted my team to stop waiting for dev resources and start building. But first, I had to stop waiting myself. This manual is what came out of that experiment, and if it can get a non-technical SVP to ship working tools, it can work for anyone.</p>
+      <a href="https://www.linkedin.com/in/ofir-bloch/" target="_blank" rel="noopener" class="author-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Follow Ofir on LinkedIn
+      </a>
     </div>
   </div>
 </section>
@@ -406,24 +533,28 @@
 <!-- ═══════ CTA BOTTOM ═══════ -->
 <section class="cta-bottom">
   <div class="cta-inner">
-    <h2>Ready to build things yourself?</h2>
-    <p>No coding experience required. Seriously. Follow me on LinkedIn for more AI-powered productivity tips, then grab the guide.</p>
-    <div class="cta-actions">
-      <a href="https://www.linkedin.com/in/ofir-bloch/" target="_blank" rel="noopener" class="btn btn-primary">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        Follow on LinkedIn
-      </a>
-      <a href="./Claude_Code_Field_Manual.pdf" class="btn btn-secondary" download>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download the Guide
-      </a>
-    </div>
+    <h2>Your team doesn't need to wait for engineering.</h2>
+    <p>This guide shows you how to start building today &mdash; dashboards, websites, automations &mdash; with Claude Code. No coding. No permission needed. Just start.</p>
+    <a href="./Claude_Code_Field_Manual.pdf" class="btn btn-primary" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Get My Free Copy
+      <span class="btn-arrow">&rarr;</span>
+    </a>
+    <div class="cta-bottom-sub">Free PDF &bull; No email required &bull; 48 pages</div>
   </div>
 </section>
 
 <footer>
-  &copy; 2026 Ofir Bloch. All rights reserved. &nbsp;&bull;&nbsp; Ofir's Claude Code Field Manual
+  &copy; 2026 <a href="https://www.linkedin.com/in/ofir-bloch/" target="_blank" rel="noopener">Ofir Bloch</a>. All rights reserved. &nbsp;&bull;&nbsp; Ofir's Claude Code Field Manual
 </footer>
+
+<!-- ═══════ STICKY MOBILE CTA ═══════ -->
+<div class="sticky-cta">
+  <a href="./Claude_Code_Field_Manual.pdf" class="btn btn-primary" download>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Get My Free Copy &rarr;
+  </a>
+</div>
 
 </body>
 </html>
