@@ -198,16 +198,20 @@
   .playbooks .section-label { color: var(--teal); }
   .playbooks .section-title { color: var(--white); }
   .playbooks .section-desc { color: rgba(255,255,255,0.5); }
-  .playbook-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .playbook-list { display: flex; flex-direction: column; gap: 0; }
   .playbook-item {
     display: flex; align-items: center; gap: 16px;
-    padding: 18px 20px; border-radius: 8px;
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+    padding: 18px 24px; border-radius: 0;
+    background: rgba(255,255,255,0.03);
+    border: none; border-bottom: 1px solid rgba(255,255,255,0.08);
   }
+  .playbook-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); border-radius: 8px 8px 0 0; }
+  .playbook-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); border-radius: 0 0 8px 8px; }
+  .playbook-item:only-child { border-radius: 8px; }
   .playbook-number {
-    font-size: 20px; font-weight: 800; color: var(--teal); min-width: 32px;
+    font-size: 20px; font-weight: 800; color: var(--teal); min-width: 36px;
   }
-  .playbook-name { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); }
+  .playbook-name { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.8); }
   .playbook-pips { display: flex; gap: 3px; margin-top: 4px; }
   .playbook-pip {
     width: 8px; height: 8px; border-radius: 50%;
@@ -229,7 +233,7 @@
   .toggle-all svg { width: 14px; height: 14px; }
   .playbook-item { cursor: pointer; position: relative; flex-wrap: wrap; transition: all 0.25s ease; }
   .playbook-item:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
-  .playbook-item[aria-expanded="true"] { background: rgba(255,255,255,0.05); border-color: rgba(9,135,160,0.3); }
+  .playbook-item[aria-expanded="true"] { background: rgba(255,255,255,0.06); }
   .playbook-header { display: flex; align-items: center; gap: 16px; width: 100%; pointer-events: none; }
   .playbook-toggle {
     margin-left: auto; width: 28px; height: 28px; flex-shrink: 0;
@@ -249,20 +253,20 @@
   .playbook-item[aria-expanded="true"] .playbook-toggle::before { background: var(--teal); }
   .playbook-detail {
     width: 100%; overflow: hidden; max-height: 0; opacity: 0;
-    transition: max-height 0.35s ease, padding 0.35s ease, opacity 0.25s ease;
-    padding: 0 0 0 48px;
+    transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
+    padding: 0 0 0 60px;
   }
   .playbook-item[aria-expanded="true"] .playbook-detail {
-    max-height: 300px; padding: 16px 0 6px 48px; opacity: 1;
+    max-height: 300px; padding: 16px 24px 8px 60px; opacity: 1;
   }
   .playbook-meta {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4px 16px;
     font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5;
   }
-  .playbook-meta strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+  .playbook-meta strong { color: rgba(255,255,255,0.7); font-weight: 600; display: block; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 2px; }
   .playbook-desc {
-    margin-top: 10px; font-family: 'Lora', serif; font-size: 13px;
-    color: rgba(255,255,255,0.4); line-height: 1.6; font-style: italic;
+    margin-top: 12px; font-family: 'Lora', serif; font-size: 14px;
+    color: rgba(255,255,255,0.45); line-height: 1.7; font-style: italic;
   }
 
   /* ── AUTHOR ── */
@@ -354,9 +358,8 @@
     .section-title { font-size: 26px; }
     .section-desc { font-size: 15px; }
     .playbooks { padding: 56px 20px; }
-    .playbook-list { grid-template-columns: 1fr; }
-    .playbook-meta { grid-template-columns: 1fr; }
-    .playbook-item[aria-expanded="true"] .playbook-detail { padding-left: 48px; }
+    .playbook-meta { grid-template-columns: 1fr 1fr; }
+    .playbook-item[aria-expanded="true"] .playbook-detail { padding-left: 20px; padding-right: 12px; }
     .chapters-grid { grid-template-columns: 1fr; }
     .for-grid { grid-template-columns: 1fr; }
     .cta-bottom { padding: 56px 20px 100px; }
