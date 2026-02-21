@@ -169,7 +169,8 @@
     position: relative; overflow: hidden;
     min-width: 52px; margin: 0;
     background: var(--optionBackground, var(--ink-deep));
-    background-size: auto 120%; background-position: center;
+    background-size: cover; background-position: center;
+    background-repeat: no-repeat;
     cursor: pointer;
     transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
     flex-grow: 1; border-right: 1px solid rgba(255,255,255,0.06);
@@ -177,7 +178,7 @@
   .chapter-panel:last-child { border-right: none; }
   .chapter-panel.active {
     flex-grow: 10000; transform: scale(1);
-    max-width: 600px; background-size: auto 100%;
+    max-width: 600px; background-size: cover;
   }
   .chapter-panel:not(.active) {
     flex-grow: 1;
