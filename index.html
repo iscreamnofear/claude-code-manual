@@ -180,9 +180,10 @@
   }
   .author-avatar {
     width: 80px; height: 80px; border-radius: 50%;
-    background: var(--teal-bg); display: flex; align-items: center;
-    justify-content: center; flex-shrink: 0;
-    font-size: 28px; font-weight: 800; color: var(--teal);
+    flex-shrink: 0; overflow: hidden;
+  }
+  .author-avatar img {
+    width: 100%; height: 100%; object-fit: cover;
   }
   .author-name { font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
   .author-role { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
@@ -393,10 +394,10 @@
 <!-- ═══════ AUTHOR ═══════ -->
 <section class="author-section">
   <div class="author-inner">
-    <div class="author-avatar">OB</div>
+    <div class="author-avatar"><img src="./ofir-headshot.png" alt="Ofir Bloch"></div>
     <div>
       <div class="author-name">Ofir Bloch</div>
-      <div class="author-role">SVP Corporate Marketing</div>
+      <div class="author-role">Marketing Executive</div>
       <p class="author-bio">I wrote this guide because I was tired of waiting for dev resources to build the things my team needed. Claude Code changed that. This manual is everything I wish someone had handed me on day one.</p>
     </div>
   </div>
