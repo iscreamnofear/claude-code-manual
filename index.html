@@ -117,29 +117,55 @@
   .stat-label { font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
 
   /* ── WHO IS THIS FOR ── */
-  .for-section { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
+  .for-section { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
   .for-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px; margin-top: 48px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 48px;
   }
   .for-card {
-    padding: 28px; border-radius: 10px;
+    border-radius: 16px; overflow: hidden;
     border: 1px solid var(--rule); background: var(--white);
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
   }
-  .for-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(9,135,160,0.08); }
-  .for-icon {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: var(--brass-bg); color: var(--brass);
+  .for-card:hover { border-color: var(--teal); box-shadow: 0 8px 32px rgba(9,135,160,0.10); transform: translateY(-3px); }
+  .for-card-img {
+    width: 100%; height: 180px; object-fit: cover;
+    display: block;
+  }
+  .for-card-body { padding: 24px; }
+  .for-role {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--brass); margin-bottom: 8px;
+  }
+  .for-pain {
+    font-family: 'Lora', serif; font-size: 16px; font-style: italic;
+    color: var(--ink); line-height: 1.5; margin-bottom: 14px;
+  }
+  .for-solve {
+    font-size: 14px; color: var(--text-light); line-height: 1.6;
+  }
+  .for-solve strong { color: var(--teal); font-weight: 700; }
+
+  /* Exec callout */
+  .exec-callout {
+    margin-top: 32px; padding: 28px 32px;
+    border-radius: 14px; background: var(--brass-bg);
+    border: 1px solid rgba(204,120,92,0.18);
+    display: flex; align-items: flex-start; gap: 20px;
+  }
+  .exec-callout-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--brass); color: white;
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 16px;
+    flex-shrink: 0;
   }
-  .for-icon svg { width: 20px; height: 20px; }
-  .for-title {
+  .exec-callout-icon svg { width: 22px; height: 22px; }
+  .exec-callout-body { flex: 1; }
+  .exec-callout-title {
     font-size: 16px; font-weight: 700; color: var(--ink);
-    margin-bottom: 8px; line-height: 1.3;
+    margin-bottom: 6px;
   }
-  .for-desc {
+  .exec-callout-desc {
     font-family: 'Lora', serif; font-size: 14px; color: var(--text-light); line-height: 1.6;
   }
 
@@ -439,6 +465,8 @@
     .panel-info .panel-title { font-size: 15px; }
     .panel-info .panel-sub { font-size: 12px; }
     .for-grid { grid-template-columns: 1fr; }
+    .for-card-img { height: 160px; }
+    .exec-callout { flex-direction: column; align-items: center; text-align: center; padding: 24px 20px; }
     .cta-bottom { padding: 56px 20px 100px; }
     .cta-bottom h2 { font-size: 26px; }
     .author-section { padding: 56px 20px; }
@@ -522,32 +550,39 @@
   <p class="section-desc">If you've ever thought "I wish I could just build this myself," this guide is for you.</p>
   <div class="for-grid">
     <div class="for-card">
-      <div class="for-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      <img class="for-card-img" src="images/personas/marketer.png" alt="Frustrated marketer stuck at desk with project board covered in red X marks and crumpled papers">
+      <div class="for-card-body">
+        <div class="for-role">Marketing Teams</div>
+        <div class="for-pain">"It's been three weeks and we're still waiting on dev for a campaign dashboard."</div>
+        <div class="for-solve">This guide shows you how to <strong>build your own dashboards, landing pages, and competitive trackers</strong> &mdash; in an afternoon, not a sprint cycle.</div>
       </div>
-      <div class="for-title">Marketing teams</div>
-      <div class="for-desc">Build campaign dashboards, landing pages, and competitive trackers without waiting for dev.</div>
     </div>
     <div class="for-card">
-      <div class="for-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <img class="for-card-img" src="images/personas/ops-leader.png" alt="Overwhelmed ops leader buried in spreadsheets with 42 Slack notifications on Monday morning">
+      <div class="for-card-body">
+        <div class="for-role">Operations &amp; CS Leaders</div>
+        <div class="for-pain">"Every Monday I rebuild the same report from five different spreadsheets."</div>
+        <div class="for-solve">You'll learn to <strong>automate weekly reports, build FAQ bots, and create team wikis</strong> that update themselves.</div>
       </div>
-      <div class="for-title">Operations &amp; CS leaders</div>
-      <div class="for-desc">Automate Monday morning reports, build FAQ bots, and create team wikis.</div>
     </div>
     <div class="for-card">
-      <div class="for-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      <img class="for-card-img" src="images/personas/sales-rep.png" alt="Frustrated sales rep staring at cluttered CRM pipeline data on screen, late afternoon">
+      <div class="for-card-body">
+        <div class="for-role">Sales &amp; Revenue Teams</div>
+        <div class="for-pain">"I know which leads to call &mdash; if I could just get the data out of this mess."</div>
+        <div class="for-solve">Build <strong>lead scoring tools, pipeline trackers, and outreach generators</strong> that work exactly the way you think.</div>
       </div>
-      <div class="for-title">Sales &amp; revenue teams</div>
-      <div class="for-desc">Prototype lead scoring tools, budget trackers, and email campaign builders.</div>
     </div>
-    <div class="for-card">
-      <div class="for-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-      </div>
-      <div class="for-title">Curious non-technical execs</div>
-      <div class="for-desc">Understand what AI can actually build today &mdash; and how to lead teams that use it.</div>
+  </div>
+
+  <!-- Exec callout -->
+  <div class="exec-callout">
+    <div class="exec-callout-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+    </div>
+    <div class="exec-callout-body">
+      <div class="exec-callout-title">Non-technical execs &amp; team leads</div>
+      <div class="exec-callout-desc">You don't need to build anything yourself. This guide helps you <strong style="color:var(--brass);">understand what AI can actually ship today</strong> &mdash; so you can set realistic expectations, spot good use cases, and lead teams that use these tools well.</div>
     </div>
   </div>
 </section>
