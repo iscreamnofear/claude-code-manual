@@ -157,25 +157,93 @@
     font-family: 'Lora', serif; font-size: 16px; color: var(--text-light);
     line-height: 1.7; max-width: 560px; margin-bottom: 48px;
   }
-  .chapters-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
+
+  /* Expanding flex panels */
+  .chapters-panels {
+    display: flex; flex-direction: row; align-items: stretch;
+    overflow: hidden; width: 100%; height: 420px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
   }
-  .chapter-card {
-    background: var(--bg); border-radius: 10px; padding: 28px;
-    border: 1px solid var(--rule); transition: all 0.2s ease;
+  .chapter-panel {
+    position: relative; overflow: hidden;
+    min-width: 52px; margin: 0;
+    background: var(--optionBackground, var(--ink-deep));
+    background-size: auto 120%; background-position: center;
+    cursor: pointer;
+    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+    flex-grow: 1; border-right: 1px solid rgba(255,255,255,0.06);
   }
-  .chapter-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(9,135,160,0.08); }
-  .chapter-num {
-    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--brass); margin-bottom: 10px;
+  .chapter-panel:last-child { border-right: none; }
+  .chapter-panel.active {
+    flex-grow: 10000; transform: scale(1);
+    max-width: 600px; background-size: auto 100%;
   }
-  .chapter-name {
-    font-size: 17px; font-weight: 700; color: var(--ink);
-    margin-bottom: 8px; line-height: 1.3;
+  .chapter-panel:not(.active) {
+    flex-grow: 1;
   }
-  .chapter-detail {
-    font-family: 'Lora', serif; font-size: 13.5px; color: var(--text-light); line-height: 1.6;
+  .chapter-panel:not(.active):hover {
+    min-width: 72px;
+    background: rgba(255,255,255,0.04);
+  }
+  /* Shadow overlay */
+  .panel-shadow {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 200px;
+    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+  }
+  .chapter-panel.active .panel-shadow {
+    box-shadow: inset 0 -200px 120px -80px rgba(15,21,32,0.92);
+  }
+  .chapter-panel:not(.active) .panel-shadow {
+    bottom: -40px;
+    box-shadow: inset 0 -120px 0px -120px rgba(15,21,32,0.85);
+  }
+  /* Label area */
+  .panel-label {
+    display: flex; position: absolute; right: 0;
+    height: 44px;
+    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+  }
+  .chapter-panel.active .panel-label {
+    bottom: 24px; left: 24px;
+  }
+  .chapter-panel:not(.active) .panel-label {
+    bottom: 14px; left: 50%; transform: translateX(-50%);
+  }
+  /* Part number badge */
+  .panel-num {
+    display: flex; flex-direction: row; justify-content: center; align-items: center;
+    min-width: 44px; max-width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--brass); color: var(--white);
+    font-size: 13px; font-weight: 800; letter-spacing: -0.5px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 12px rgba(204,120,92,0.4);
+  }
+  /* Info text */
+  .panel-info {
+    display: flex; flex-direction: column; justify-content: center;
+    margin-left: 14px; color: white; white-space: nowrap;
+  }
+  .panel-info > div {
+    position: relative;
+    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95), opacity 0.5s ease-out;
+  }
+  .chapter-panel.active .panel-info > div {
+    left: 0; opacity: 1;
+  }
+  .chapter-panel:not(.active) .panel-info > div {
+    left: 20px; opacity: 0;
+  }
+  .panel-info .panel-title {
+    font-weight: 700; font-size: 17px; letter-spacing: -0.3px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  }
+  .panel-info .panel-sub {
+    font-family: 'Lora', serif; font-size: 13px; font-style: italic;
+    opacity: 0.75; transition-delay: 0.08s;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
   }
 
   /* ── MID-PAGE CTA ── */
@@ -365,7 +433,13 @@
     .playbooks { padding: 56px 20px; }
     .playbook-item[aria-expanded="true"] .playbook-detail { padding-left: 20px; padding-right: 12px; }
     .playbook-confidence { flex-wrap: wrap; }
-    .chapters-grid { grid-template-columns: 1fr; }
+    .chapters-panels { height: 360px; }
+    .chapter-panel { min-width: 44px; }
+    .chapter-panel:not(.active):hover { min-width: 56px; }
+    .panel-num { min-width: 36px; max-width: 36px; height: 36px; font-size: 11px; }
+    .panel-label { height: 36px; }
+    .panel-info .panel-title { font-size: 15px; }
+    .panel-info .panel-sub { font-size: 12px; }
     .for-grid { grid-template-columns: 1fr; }
     .cta-bottom { padding: 56px 20px 100px; }
     .cta-bottom h2 { font-size: 26px; }
@@ -380,6 +454,13 @@
     .stats-inner { flex-direction: column; gap: 16px; }
     .hero-actions { flex-direction: column; align-items: center; }
     .btn { width: 100%; justify-content: center; }
+    .chapters-panels { height: 300px; }
+    .chapter-panel { min-width: 36px; }
+    .chapter-panel:not(.active):hover { min-width: 44px; }
+    .chapter-panel:nth-child(6) { display: none; }
+    .panel-num { min-width: 30px; max-width: 30px; height: 30px; font-size: 10px; }
+    .panel-label { height: 30px; }
+    .chapter-panel.active .panel-label { bottom: 16px; left: 16px; }
   }
 </style>
 </head>
@@ -477,36 +558,66 @@
   <div class="section-label">What's Inside</div>
   <h2 class="section-title">From "what is this?" to shipping real tools</h2>
   <p class="section-desc">Six parts that build on each other. Start anywhere. Each chapter is self-contained, jargon-free, and designed to get you building fast.</p>
-  <div class="chapters-grid">
-    <div class="chapter-card">
-      <div class="chapter-num">Part 1</div>
-      <div class="chapter-name">What Is This Thing?</div>
-      <div class="chapter-detail">Claude vs Cowork vs Claude Code. What each does and when to use which one.</div>
+  <div class="chapters-panels" id="chapterPanels">
+    <div class="chapter-panel active" style="--optionBackground:url(images/parts/part1-what-is-this.png);" onclick="activatePanel(this)">
+      <div class="panel-shadow"></div>
+      <div class="panel-label">
+        <div class="panel-num">1</div>
+        <div class="panel-info">
+          <div class="panel-title">What Is This Thing?</div>
+          <div class="panel-sub">Claude vs Cowork vs Claude Code &mdash; and when to use each</div>
+        </div>
+      </div>
     </div>
-    <div class="chapter-card">
-      <div class="chapter-num">Part 2</div>
-      <div class="chapter-name">Start Here: Cowork</div>
-      <div class="chapter-detail">Your comfort zone. Turn messy docs into clean reports without touching code.</div>
+    <div class="chapter-panel" style="--optionBackground:url(images/parts/part2-cowork.png);" onclick="activatePanel(this)">
+      <div class="panel-shadow"></div>
+      <div class="panel-label">
+        <div class="panel-num">2</div>
+        <div class="panel-info">
+          <div class="panel-title">Start Here: Cowork</div>
+          <div class="panel-sub">Turn messy docs into clean reports without touching code</div>
+        </div>
+      </div>
     </div>
-    <div class="chapter-card">
-      <div class="chapter-num">Part 3</div>
-      <div class="chapter-name">Claude Code Desktop</div>
-      <div class="chapter-detail">Build websites, dashboards, and tools &mdash; then deploy them to the internet.</div>
+    <div class="chapter-panel" style="--optionBackground:url(images/parts/part3-desktop.png);" onclick="activatePanel(this)">
+      <div class="panel-shadow"></div>
+      <div class="panel-label">
+        <div class="panel-num">3</div>
+        <div class="panel-info">
+          <div class="panel-title">Claude Code Desktop</div>
+          <div class="panel-sub">Build websites, dashboards, and tools &mdash; then ship them</div>
+        </div>
+      </div>
     </div>
-    <div class="chapter-card">
-      <div class="chapter-num">Part 4</div>
-      <div class="chapter-name">Talking to Claude</div>
-      <div class="chapter-detail">Five prompting rules. Bad ask vs good ask. How to give feedback that works.</div>
+    <div class="chapter-panel" style="--optionBackground:url(images/parts/part4-talking.png);" onclick="activatePanel(this)">
+      <div class="panel-shadow"></div>
+      <div class="panel-label">
+        <div class="panel-num">4</div>
+        <div class="panel-info">
+          <div class="panel-title">Talking to Claude</div>
+          <div class="panel-sub">Five prompting rules and how to give feedback that works</div>
+        </div>
+      </div>
     </div>
-    <div class="chapter-card">
-      <div class="chapter-num">Part 5</div>
-      <div class="chapter-name">The Safety Stuff</div>
-      <div class="chapter-detail">Permissions, undo, and protecting your files. Five minutes saves a bad day.</div>
+    <div class="chapter-panel" style="--optionBackground:url(images/parts/part5-safety.png);" onclick="activatePanel(this)">
+      <div class="panel-shadow"></div>
+      <div class="panel-label">
+        <div class="panel-num">5</div>
+        <div class="panel-info">
+          <div class="panel-title">The Safety Stuff</div>
+          <div class="panel-sub">Permissions, undo, and protecting your files</div>
+        </div>
+      </div>
     </div>
-    <div class="chapter-card">
-      <div class="chapter-num">Part 6</div>
-      <div class="chapter-name">When Things Go Wrong</div>
-      <div class="chapter-detail">Hallucinations, loops, blank previews. What to do for each &mdash; and when to start over.</div>
+    <div class="chapter-panel" style="--optionBackground:url(images/parts/part6-wrong.png);" onclick="activatePanel(this)">
+      <div class="panel-shadow"></div>
+      <div class="panel-label">
+        <div class="panel-num">6</div>
+        <div class="panel-info">
+          <div class="panel-title">When Things Go Wrong</div>
+          <div class="panel-sub">Hallucinations, loops, and when to start over</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -703,6 +814,10 @@
 </div>
 
 <script>
+function activatePanel(el) {
+  document.querySelectorAll('.chapter-panel').forEach(function(p) { p.classList.remove('active'); });
+  el.classList.add('active');
+}
 function togglePlaybook(el) {
   var expanded = el.getAttribute('aria-expanded') === 'true';
   el.setAttribute('aria-expanded', !expanded);
