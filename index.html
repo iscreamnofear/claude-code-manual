@@ -368,7 +368,7 @@
   /* ── AUTHOR ── */
   .author-section { padding: 80px 24px; border-top: 1px solid var(--rule); }
   .author-inner {
-    max-width: 700px; margin: 0 auto;
+    max-width: 740px; margin: 0 auto;
     display: flex; align-items: flex-start; gap: 32px;
   }
   .author-avatar {
@@ -378,18 +378,36 @@
   }
   .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
   .author-name { font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
-  .author-role { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
+  .author-role { font-size: 13px; font-weight: 600; color: var(--brass); margin-bottom: 14px; letter-spacing: 0.3px; }
   .author-bio {
     font-family: 'Lora', serif; font-size: 15px; color: var(--text-light);
     line-height: 1.7; margin-bottom: 16px;
   }
+  .author-proof {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; color: var(--teal);
+    margin-bottom: 20px; padding: 6px 14px;
+    background: var(--teal-bg); border-radius: 8px;
+    border: 1px solid rgba(9,135,160,0.12);
+  }
+  .author-proof svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .author-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .author-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 8px;
+    font-size: 14px; font-weight: 700; text-decoration: none;
+    background: var(--teal); color: var(--white);
+    transition: background 0.2s;
+  }
+  .author-cta:hover { background: var(--teal-dark); }
+  .author-cta svg { width: 16px; height: 16px; }
   .author-link {
     display: inline-flex; align-items: center; gap: 6px;
-    font-size: 14px; font-weight: 600; color: var(--teal);
+    font-size: 13px; font-weight: 600; color: var(--muted);
     text-decoration: none; transition: color 0.2s;
   }
-  .author-link:hover { color: var(--teal-dark); }
-  .author-link svg { width: 16px; height: 16px; }
+  .author-link:hover { color: var(--teal); }
+  .author-link svg { width: 15px; height: 15px; }
 
   /* ── CTA BOTTOM ── */
   .cta-bottom {
@@ -811,12 +829,22 @@
     <div class="author-avatar"><img src="./ofir-headshot.png?v=2" alt="Ofir Bloch"></div>
     <div>
       <div class="author-name">Ofir Bloch</div>
-      <div class="author-role">Marketing Executive</div>
+      <div class="author-role">SVP, Corporate Marketing</div>
       <p class="author-bio">I'm a marketing executive, not an engineer. I wrote this guide because I wanted my team to stop waiting for dev resources and start building. But first, I had to stop waiting myself. This manual is what came out of that experiment, and if it can get a non-technical SVP to ship working tools, it can work for anyone.</p>
-      <a href="https://www.linkedin.com/in/ofir-bloch/" target="_blank" rel="noopener" class="author-link">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        Follow Ofir on LinkedIn
-      </a>
+      <div class="author-proof">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Built 10+ internal tools for my team using the methods in this guide
+      </div>
+      <div class="author-actions">
+        <a href="./Claude_Code_Field_Manual.pdf" class="author-cta" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Get the Free Guide
+        </a>
+        <a href="https://www.linkedin.com/in/ofir-bloch/" target="_blank" rel="noopener" class="author-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Follow on LinkedIn
+        </a>
+      </div>
     </div>
   </div>
 </section>
