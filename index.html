@@ -162,30 +162,27 @@
   .chapters-panels {
     display: flex; flex-direction: row; align-items: stretch;
     overflow: hidden; width: 100%; height: 420px;
-    border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
   }
   .chapter-panel {
     position: relative; overflow: hidden;
-    min-width: 52px; margin: 0;
+    min-width: 60px; margin: 8px;
     background: var(--optionBackground, var(--ink-deep));
     background-size: cover; background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
     transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
-    flex-grow: 1; border-right: 1px solid rgba(255,255,255,0.06);
+    flex-grow: 1; border-radius: 24px;
   }
-  .chapter-panel:last-child { border-right: none; }
   .chapter-panel.active {
     flex-grow: 10000; transform: scale(1);
-    max-width: 600px; background-size: cover;
+    max-width: 600px; margin: 0;
+    border-radius: 32px; background-size: cover;
   }
   .chapter-panel:not(.active) {
-    flex-grow: 1;
+    flex-grow: 1; border-radius: 24px;
   }
   .chapter-panel:not(.active):hover {
     min-width: 72px;
-    background: rgba(255,255,255,0.04);
   }
   /* Shadow overlay */
   .panel-shadow {
@@ -194,11 +191,11 @@
     transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
   }
   .chapter-panel.active .panel-shadow {
-    box-shadow: inset 0 -200px 120px -80px rgba(15,21,32,0.92);
+    box-shadow: inset 0 -120px 120px -120px black, inset 0 -120px 120px -100px black;
   }
   .chapter-panel:not(.active) .panel-shadow {
     bottom: -40px;
-    box-shadow: inset 0 -120px 0px -120px rgba(15,21,32,0.85);
+    box-shadow: inset 0 -120px 0px -120px black, inset 0 -120px 0px -100px black;
   }
   /* Label area */
   .panel-label {
@@ -207,20 +204,19 @@
     transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
   }
   .chapter-panel.active .panel-label {
-    bottom: 24px; left: 24px;
+    bottom: 20px; left: 20px;
   }
   .chapter-panel:not(.active) .panel-label {
-    bottom: 14px; left: 50%; transform: translateX(-50%);
+    bottom: 10px; left: 10px;
   }
   /* Part number badge */
   .panel-num {
     display: flex; flex-direction: row; justify-content: center; align-items: center;
-    min-width: 44px; max-width: 44px; height: 44px;
+    min-width: 40px; max-width: 40px; height: 40px;
     border-radius: 50%;
-    background: var(--brass); color: var(--white);
-    font-size: 13px; font-weight: 800; letter-spacing: -0.5px;
+    background: white; color: var(--brass);
+    font-size: 14px; font-weight: 800; letter-spacing: -0.5px;
     flex-shrink: 0;
-    box-shadow: 0 2px 12px rgba(204,120,92,0.4);
   }
   /* Info text */
   .panel-info {
@@ -435,9 +431,10 @@
     .playbook-item[aria-expanded="true"] .playbook-detail { padding-left: 20px; padding-right: 12px; }
     .playbook-confidence { flex-wrap: wrap; }
     .chapters-panels { height: 360px; }
-    .chapter-panel { min-width: 44px; }
+    .chapter-panel { min-width: 48px; margin: 6px; border-radius: 20px; }
+    .chapter-panel.active { border-radius: 24px; }
     .chapter-panel:not(.active):hover { min-width: 56px; }
-    .panel-num { min-width: 36px; max-width: 36px; height: 36px; font-size: 11px; }
+    .panel-num { min-width: 34px; max-width: 34px; height: 34px; font-size: 12px; }
     .panel-label { height: 36px; }
     .panel-info .panel-title { font-size: 15px; }
     .panel-info .panel-sub { font-size: 12px; }
@@ -456,12 +453,13 @@
     .hero-actions { flex-direction: column; align-items: center; }
     .btn { width: 100%; justify-content: center; }
     .chapters-panels { height: 300px; }
-    .chapter-panel { min-width: 36px; }
+    .chapter-panel { min-width: 36px; margin: 4px; border-radius: 16px; }
+    .chapter-panel.active { border-radius: 20px; }
     .chapter-panel:not(.active):hover { min-width: 44px; }
     .chapter-panel:nth-child(6) { display: none; }
     .panel-num { min-width: 30px; max-width: 30px; height: 30px; font-size: 10px; }
     .panel-label { height: 30px; }
-    .chapter-panel.active .panel-label { bottom: 16px; left: 16px; }
+    .chapter-panel.active .panel-label { bottom: 12px; left: 12px; }
   }
 </style>
 </head>
