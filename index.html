@@ -194,8 +194,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Hero visual */
 .hero-visual {
-  width: 100%;
-  max-width: 400px;
+  width: 240px;
   flex-shrink: 0;
   order: -1;
 }
@@ -778,7 +777,7 @@ img { max-width: 100%; height: auto; display: block; }
    FOOTER
    ═══════════════════════════════════════ */
 footer {
-  padding: 32px 20px 80px;
+  padding: 32px 20px 72px;
   text-align: center;
   font-size: 12px;
   color: var(--muted);
@@ -788,7 +787,7 @@ footer a { color: var(--teal); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 
 /* ═══════════════════════════════════════
-   STICKY MOBILE CTA
+   STICKY CTA (all viewports)
    ═══════════════════════════════════════ */
 .sticky-cta {
   display: block;
@@ -801,6 +800,11 @@ footer a:hover { text-decoration: underline; }
   border-top: 1px solid rgba(255,255,255,0.1);
   z-index: 100;
   box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.sticky-cta.visible {
+  transform: translateY(0);
 }
 .sticky-cta .btn {
   width: 100%;
@@ -896,11 +900,18 @@ footer a:hover { text-decoration: underline; }
   .cta-bottom { padding: 80px 24px; }
   .cta-bottom h2 { font-size: 32px; letter-spacing: -1px; }
 
-  /* Footer — no sticky padding needed on tablet+ */
+  /* Footer */
   footer { padding: 32px 24px; }
 
-  /* Hide sticky CTA on tablet+ */
-  .sticky-cta { display: none; }
+  /* Sticky CTA — compact bar on tablet+ */
+  .sticky-cta {
+    padding: 10px 24px;
+  }
+  .sticky-cta .btn {
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 12px 24px;
+  }
 }
 
 /* ═══════════════════════════════════════
@@ -1322,10 +1333,27 @@ document.querySelectorAll('a[download]').forEach(function(btn) {
                 btn.closest('.mid-cta') ? 'mid_cta' :
                 btn.closest('.author-section') ? 'author' :
                 btn.closest('.cta-bottom') ? 'bottom_cta' :
-                btn.closest('.sticky-cta') ? 'sticky_mobile' : 'unknown';
+                btn.closest('.sticky-cta') ? 'sticky' : 'unknown';
     track('download_manual', { location: label });
   });
 });
+
+/* ── Sticky CTA: show after scrolling past hero CTA ── */
+(function() {
+  var stickyCta = document.querySelector('.sticky-cta');
+  var heroActions = document.querySelector('.hero-actions');
+  if (!stickyCta || !heroActions) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        stickyCta.classList.remove('visible');
+      } else {
+        stickyCta.classList.add('visible');
+      }
+    });
+  }, { threshold: 0 });
+  observer.observe(heroActions);
+})();
 
 /* ── Scroll depth tracking ── */
 (function() {
